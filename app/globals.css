@@ -63,7 +63,10 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
-
+.custom-backdrop-filter {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
 
 @layer base {
   * {

@@ -44,7 +44,7 @@ const Navigation = () => {
         variants={containerVariants}
         animate={containerControls}
         initial="close"
-        className="bg-secondary flex flex-col z-10 gap-20 p-5 absolute top-0 left-0 h-full shadow shadow-neutral-600"
+        className="bg-secondary flex flex-col z-10 gap-20 p-5 fixed top-0 left-0 h-full shadow shadow-neutral-600"
       >
         <div className="flex flex-wrap w-full justify-center items-center">
           <Image src="/knowledge.svg" width={120} height={120} alt='logo' />
