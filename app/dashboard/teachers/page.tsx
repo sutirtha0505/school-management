@@ -10,6 +10,7 @@ const staffData = [
     name: "Rajesh Sharma",
     designation: "Headmaster",
     gender: "Male",
+    isActive:true,
     email: "rajesh.sharma@example.com",
     phone: "+91 9876543210",
     image: "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWFsZXxlbnwwfHwwfHx8MA%3D%3D"
@@ -19,6 +20,7 @@ const staffData = [
     name: "Priya Verma",
     designation: "Asst. Teacher",
     gender: "Female",
+    isActive:false,
     email: "priya.verma@example.com",
     phone: "+91 9823456789",
     image: "https://plus.unsplash.com/premium_photo-1681210062532-ff531e87e41f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGZlbWFsZXxlbnwwfHwwfHx8MA%3D%3D"
@@ -28,6 +30,7 @@ const staffData = [
     name: "Amit Kumar",
     designation: "Asst. Teacher",
     gender: "Male",
+    isActive:true,
     email: "amit.kumar@example.com",
     phone: "+91 9785642310",
     image: "https://images.unsplash.com/photo-1541577141970-eebc83ebe30e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbGV8ZW58MHx8MHx8fDA%3D"
@@ -37,6 +40,7 @@ const staffData = [
     name: "Sunita Reddy",
     designation: "Headmaster",
     gender: "Female",
+    isActive:true,
     email: "sunita.reddy@example.com",
     phone: "+91 9765432109",
     image: "https://images.unsplash.com/photo-1600275669439-14e40452d20b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fGZlbWFsZXxlbnwwfHwwfHx8MA%3D%3D"
@@ -46,6 +50,7 @@ const staffData = [
     name: "Vikram Das",
     designation: "Asst. Teacher",
     gender: "Male",
+    isActive:false,
     email: "vikram.das@example.com",
     phone: "+91 9898765432",
     image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbGV8ZW58MHx8MHx8fDA%3D"
@@ -55,6 +60,7 @@ const staffData = [
     name: "Neha Sinha",
     designation: "Asst. Teacher",
     gender: "Female",
+    isActive:false,
     email: "neha.sinha@example.com",
     phone: "+91 9786754321",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGZlbWFsZXxlbnwwfHwwfHx8MA%3D%3D"
@@ -64,6 +70,7 @@ const staffData = [
     name: "Manoj Tiwari",
     designation: "Headmaster",
     gender: "Male",
+    isActive:true,
     email: "manoj.tiwari@example.com",
     phone: "+91 9867543210",
     image: "https://plus.unsplash.com/premium_photo-1674932532821-708d9658c640?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbGV8ZW58MHx8MHx8fDA%3D"
@@ -73,6 +80,7 @@ const staffData = [
     name: "Kavita Yadav",
     designation: "Asst. Teacher",
     gender: "Female",
+    isActive:true,
     email: "kavita.yadav@example.com",
     phone: "+91 9745632187",
     image: "https://plus.unsplash.com/premium_photo-1661768742069-4de270a8d9fa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGZlbWFsZXxlbnwwfHwwfHx8MA%3D%3D"
@@ -82,6 +90,7 @@ const staffData = [
     name: "Sandeep Chauhan",
     designation: "Asst. Teacher",
     gender: "Male",
+    isActive:false,
     email: "sandeep.chauhan@example.com",
     phone: "+91 9887765432",
     image: "https://plus.unsplash.com/premium_photo-1672239496412-ab605befa53f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fG1hbGV8ZW58MHx8MHx8fDA%3D"
@@ -91,6 +100,7 @@ const staffData = [
     name: "Anjali Mehta",
     designation: "Asst. Teacher",
     gender: "Female",
+    isActive:true,
     email: "anjali.mehta@example.com",
     phone: "+91 9723456789",
     image: "https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGZlbWFsZXxlbnwwfHwwfHx8MA%3D%3D"
@@ -100,6 +110,7 @@ const staffData = [
     name: "Ravi Gupta",
     designation: "Headmaster",
     gender: "Male",
+    isActive:false,
     email: "ravi.gupta@example.com",
     phone: "+91 9654321098",
     image: "https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjV8fG1hbGV8ZW58MHx8MHx8fDA%3D"
@@ -109,6 +120,7 @@ const staffData = [
     name: "Pooja Pandey",
     designation: "Asst. Teacher",
     gender: "Female",
+    isActive:true,
     email: "pooja.pandey@example.com",
     phone: "+91 9823456780",
     image: "https://images.unsplash.com/photo-1664575600850-c4b712e6e2bf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZlbWFsZXxlbnwwfHwwfHx8MA%3D%3D"
@@ -118,6 +130,7 @@ const staffData = [
     name: "Arun Sharma",
     designation: "Asst. Teacher",
     gender: "Male",
+    isActive:false,
     email: "arun.sharma@example.com",
     phone: "+91 9786543212",
     image: "https://plus.unsplash.com/premium_photo-1666298858421-3765c17bcf80?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fG1hbGV8ZW58MHx8MHx8fDA%3D"
@@ -127,6 +140,7 @@ const staffData = [
     name: "Meenakshi Nair",
     designation: "Asst. Teacher",
     gender: "Female",
+    isActive:true,
     email: "meenakshi.nair@example.com",
     phone: "+91 9812345678",
     image: "https://plus.unsplash.com/premium_photo-1668896122554-2a4456667f65?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZmVtYWxlfGVufDB8fDB8fHww"
@@ -136,6 +150,7 @@ const staffData = [
     name: "Deepak Joshi",
     designation: "Headmaster",
     gender: "Male",
+    isActive:true,
     email: "deepak.joshi@example.com",
     phone: "+91 9678543210",
     image: "https://images.unsplash.com/photo-1508341591423-4347099e1f19?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fG1hbGV8ZW58MHx8MHx8fDA%3D"
@@ -167,7 +182,7 @@ const TeachersPage = () => {
             return (
               <div key={staff.id} className='w-full h-20 rounded-lg bg-primary-foreground flex justify-between items-center p-5 gap-5'>
                 <div className='flex relative'>
-                  <Dot className='absolute z-[2]' stroke='green' width={80} height={80} />
+                  <Dot className='absolute z-[2]' stroke={staff.isActive?'green':'red'} width={80} height={80} />
                   <div className='image rounded-full border-2 border-primary w-12 h-12 overflow-hidden'>
                     <Image className='object-cover w-full h-full' src={staff.image} height={60} width={60} alt='teacher-2' />
                   </div>
