@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import NavigationLink from "./NavigationLink";
 import ProjectNavigation from "./ProjectNavigation";
 import Image from "next/image";
-import { PanelRightClose } from "lucide-react";
+import { PanelRightClose, PanelRightOpen } from "lucide-react";
 
 const navigationItems = [
   { name: "Dashboard", image: "/home-updated.svg", route: "/dashboard" },
@@ -51,13 +51,13 @@ const Navigation = () => {
           <div className="w-full h-auto flex justify-between items-center">
             {isOpen && <h1 className="text-xl font-semibold">School Booster</h1>}
             <button className="p-1 rounded-full flex" onClick={handleOpenClose}>
-              <PanelRightClose />
+              {isOpen?<PanelRightOpen />:<PanelRightClose />}
             </button>
           </div>
         </div>
         <div className="flex flex-col gap-3">
           {navigationItems.map((item) => (
-            <NavigationLink key={item.name} name={item.name} route={item.route}>
+            <NavigationLink key={item.name} name={isOpen?item.name:""} route={item.route}>
               <Image src={item.image} width={30} height={30} alt={item.name} />
             </NavigationLink>
           ))}

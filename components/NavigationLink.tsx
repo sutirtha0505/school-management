@@ -1,7 +1,7 @@
 "use client"
 interface Props {
   children: React.ReactNode
-  name: string
+  name?: string
   route: string
 }
 import { useRouter } from "next/navigation"
