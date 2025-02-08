@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Search } from 'lucide-react'
+import { X, Search } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
@@ -9,10 +9,10 @@ const TeachersPage = () => {
     <div className='w-full h-screen p-5 flex justify-center items-center flex-col gap-5'>
       <div className='flex w-full justify-between items-center h-auto'>
         <h1 className='font-bold text-accent-foreground text-lg text-nowrap'>All Teachers</h1>
-        <div className='w-full justify-center relative gap-6 items-center flex px-6'>
+        <div className='w-full justify-center gap-6 items-center flex px-6'>
           <div>
-            <Search className='w-9 h-9 absolute flex justify-center items-center bg-primary-foreground p-2 rounded-sm'/>
-          <Input type="text" className='pl-6' placeholder="👉 Search Teachers" />
+            <Search className='z-10 w-9 h-10 absolute flex justify-center items-center bg-primary-foreground p-2 rounded-sm' />
+            <Input type="text" className='pl-10 h-10 relative focus:none' placeholder="👉 Search Teachers" />
           </div>
           <Button>Search</Button>
         </div>
