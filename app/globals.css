@@ -34,6 +34,13 @@ body {
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --chart-6: 220 65% 52%;
+    --chart-7: 290 70% 50%;
+    --chart-8: 350 78% 55%;
+    --chart-9: 130 65% 45%;
+    --chart-10: 50 90% 60%;
+    --chart-11: 260 75% 50%;
+    --chart-12: 180 68% 40%;
   }
 
   .dark {
@@ -61,8 +68,16 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --chart-6: 200 72% 48%;
+    --chart-7: 310 68% 52%;
+    --chart-8: 25 85% 57%;
+    --chart-9: 140 75% 42%;
+    --chart-10: 60 95% 65%;
+    --chart-11: 270 78% 55%;
+    --chart-12: 190 70% 38%;
   }
 }
+
 .custom-backdrop-filter {
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);

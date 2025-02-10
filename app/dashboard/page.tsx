@@ -139,16 +139,16 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 const PiechartData = [
-    { class: "Class - I", students: 204, fill: "var(--color-class-1)" },
-    { class: "Class - II", students: 137, fill: "var(--color-class-2)" },
-    { class: "Class - III", students: 191, fill: "var(--color-class-3)" },
-    { class: "Class - IV", students: 184, fill: "var(--color-class-4)" },
-    { class: "Class - V", students: 78, fill: "var(--color-class-5)" },
-    { class: "Class - VI", students: 214, fill: "var(--color-class-6)" },
-    { class: "Class - VII", students: 63, fill: "var(--color-class-7)" },
-    { class: "Class - VIII", students: 123, fill: "var(--color-class-8)" },
-    { class: "Class - IX", students: 200, fill: "var(--color-class-9)" },
-    { class: "Class - X", students: 104, fill: "var(--color-class-10)" },
+    { class: "Class - I", students: 204, fill: "hsl(var(--chart-1))" },
+    { class: "Class - II", students: 137, fill: "hsl(var(--chart-2))" },
+    { class: "Class - III", students: 191, fill: "hsl(var(--chart-3))" },
+    { class: "Class - IV", students: 184, fill: "hsl(var(--chart-4))" },
+    { class: "Class - V", students: 78, fill: "hsl(var(--chart-5))" },
+    { class: "Class - VI", students: 214, fill: "hsl(var(--chart-6))" },
+    { class: "Class - VII", students: 63, fill: "hsl(var(--chart-7))" },
+    { class: "Class - VIII", students: 123, fill: "hsl(var(--chart-8))" },
+    { class: "Class - IX", students: 200, fill: "hsl(var(--chart-9))" },
+    { class: "Class - X", students: 104, fill: "hsl(var(--chart-10))" },
 ];
 
 const PiechartConfig = {
@@ -179,7 +179,7 @@ const DashboardPage = () => {
     });
     const totalStudents = React.useMemo(() => {
         return PiechartData.reduce((acc, curr) => acc + curr.students, 0);
-      }, []);
+    }, []);
 
     return (
         <section className="flex flex-col gap-5">
@@ -325,7 +325,7 @@ const DashboardPage = () => {
                 </CardHeader>
                 <CardContent className="flex-1 pb-0">
                     <ChartContainer
-                        config={chartConfig}
+                        config={PiechartConfig}
                         className="mx-auto aspect-square max-h-[250px]"
                     >
                         <PieChart>
@@ -334,7 +334,7 @@ const DashboardPage = () => {
                                 content={<ChartTooltipContent hideLabel />}
                             />
                             <Pie
-                                data={chartData}
+                                data={PiechartData}
                                 dataKey="students"
                                 nameKey="class"
                                 innerRadius={60}
