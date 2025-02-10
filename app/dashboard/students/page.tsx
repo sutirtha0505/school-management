@@ -35,17 +35,127 @@ type Student = {
 };
 
 const studentData = [
-    { "name": "Aryan Sharma", "admissionID": "A1001", "gender": "Male", "rollNumber": "R1", "class": "10", "section": "A", "religion": "Hindu", "attendance": "Present", "parentContact": "9876543210" },
-    { "name": "Ayesha Khan", "admissionID": "A1002", "gender": "Female", "rollNumber": "R2", "class": "10", "section": "A", "religion": "Muslim", "attendance": "Absent", "parentContact": "8765432109" },
-    { "name": "Rohan Patel", "admissionID": "A1003", "gender": "Male", "rollNumber": "R3", "class": "10", "section": "B", "religion": "Hindu", "attendance": "Present", "parentContact": "7654321098" },
-    { "name": "Priya Mehta", "admissionID": "A1004", "gender": "Female", "rollNumber": "R4", "class": "10", "section": "B", "religion": "Jain", "attendance": "Absent", "parentContact": "6543210987" },
-    { "name": "Mohammad Ali", "admissionID": "A1005", "gender": "Male", "rollNumber": "R5", "class": "9", "section": "A", "religion": "Muslim", "attendance": "Present", "parentContact": "5432109876" },
-    { "name": "Ananya Gupta", "admissionID": "A1006", "gender": "Female", "rollNumber": "R6", "class": "9", "section": "A", "religion": "Hindu", "attendance": "Absent", "parentContact": "4321098765" },
-    { "name": "Karan Verma", "admissionID": "A1007", "gender": "Male", "rollNumber": "R7", "class": "9", "section": "B", "religion": "Hindu", "attendance": "Present", "parentContact": "3210987654" },
-    { "name": "Simran Kaur", "admissionID": "A1008", "gender": "Female", "rollNumber": "R8", "class": "9", "section": "B", "religion": "Sikh", "attendance": "Present", "parentContact": "2109876543" },
-    { "name": "Neha Rani", "admissionID": "A1010", "gender": "Female", "rollNumber": "R10", "class": "8", "section": "A", "religion": "Christian", "attendance": "Present", "parentContact": "1098765432" },
-    { "name": "Sanya Iyer", "admissionID": "A1012", "gender": "Female", "rollNumber": "R12", "class": "8", "section": "B", "religion": "Jain", "attendance": "Absent", "parentContact": "9988776655" },
-    { "name": "Divya Sharma", "admissionID": "A1020", "gender": "Female", "rollNumber": "R20", "class": "6", "section": "B", "religion": "Hindu", "attendance": "Present", "parentContact": "8877665544" }
+  {
+    name: "Aryan Sharma",
+    admissionID: "A1001",
+    gender: "Male",
+    rollNumber: "R1",
+    class: "10",
+    section: "A",
+    religion: "Hindu",
+    attendance: "Present",
+    parentContact: "9876543210",
+  },
+  {
+    name: "Ayesha Khan",
+    admissionID: "A1002",
+    gender: "Female",
+    rollNumber: "R2",
+    class: "10",
+    section: "A",
+    religion: "Muslim",
+    attendance: "Absent",
+    parentContact: "8765432109",
+  },
+  {
+    name: "Rohan Patel",
+    admissionID: "A1003",
+    gender: "Male",
+    rollNumber: "R3",
+    class: "10",
+    section: "B",
+    religion: "Hindu",
+    attendance: "Present",
+    parentContact: "7654321098",
+  },
+  {
+    name: "Priya Mehta",
+    admissionID: "A1004",
+    gender: "Female",
+    rollNumber: "R4",
+    class: "10",
+    section: "B",
+    religion: "Jain",
+    attendance: "Absent",
+    parentContact: "6543210987",
+  },
+  {
+    name: "Mohammad Ali",
+    admissionID: "A1005",
+    gender: "Male",
+    rollNumber: "R5",
+    class: "9",
+    section: "A",
+    religion: "Muslim",
+    attendance: "Present",
+    parentContact: "5432109876",
+  },
+  {
+    name: "Ananya Gupta",
+    admissionID: "A1006",
+    gender: "Female",
+    rollNumber: "R6",
+    class: "9",
+    section: "A",
+    religion: "Hindu",
+    attendance: "Absent",
+    parentContact: "4321098765",
+  },
+  {
+    name: "Karan Verma",
+    admissionID: "A1007",
+    gender: "Male",
+    rollNumber: "R7",
+    class: "9",
+    section: "B",
+    religion: "Hindu",
+    attendance: "Present",
+    parentContact: "3210987654",
+  },
+  {
+    name: "Simran Kaur",
+    admissionID: "A1008",
+    gender: "Female",
+    rollNumber: "R8",
+    class: "9",
+    section: "B",
+    religion: "Sikh",
+    attendance: "Present",
+    parentContact: "2109876543",
+  },
+  {
+    name: "Neha Rani",
+    admissionID: "A1010",
+    gender: "Female",
+    rollNumber: "R10",
+    class: "8",
+    section: "A",
+    religion: "Christian",
+    attendance: "Present",
+    parentContact: "1098765432",
+  },
+  {
+    name: "Sanya Iyer",
+    admissionID: "A1012",
+    gender: "Female",
+    rollNumber: "R12",
+    class: "8",
+    section: "B",
+    religion: "Jain",
+    attendance: "Absent",
+    parentContact: "9988776655",
+  },
+  {
+    name: "Divya Sharma",
+    admissionID: "A1020",
+    gender: "Female",
+    rollNumber: "R20",
+    class: "6",
+    section: "B",
+    religion: "Hindu",
+    attendance: "Present",
+    parentContact: "8877665544",
+  },
 ];
 
 const StudentsPage = () => {
@@ -123,7 +233,7 @@ const StudentsPage = () => {
               <div className="flex relative">
                 <Dot
                   className="absolute z-[2]"
-                  stroke={student.attendance==="Present" ? "green" : "red"}
+                  stroke={student.attendance === "Present" ? "green" : "red"}
                   width={80}
                   height={80}
                 />
@@ -141,7 +251,7 @@ const StudentsPage = () => {
                 <h2 className="font-bold text-accent-foreground text-lg ">
                   {student.name}
                 </h2>
-                <p className="text-sm text-accent-foreground">
+                <p className="text-sm text-accent-foreground text-center">
                   {student.rollNumber}
                 </p>
               </div>
@@ -149,54 +259,60 @@ const StudentsPage = () => {
                 {student.gender === "Male" ? <Mars /> : <Venus />}
                 <p className="text-sm">{student.gender}</p>
               </div>
+              <div className="flex justify-between items-center gap-3 bg-primary rounded-lg p-2">
+                <p className="text-md font-semibold text-accent-foreground flex items-center justify-center">
+                  <span className="text-red-400">{student.class}</span>
+                  <span className="text-green-400">{student.section}</span>
+                </p>
+              </div>
               <div className="flex justify-center items-center p-2 rounded-md bg-primary gap-2">
                 {student.religion === "Hindu" ? (
                   <Image
                     src="/hindu.svg"
-                    height={30}
-                    width={30}
+                    height={25}
+                    width={25}
                     alt={student.religion}
                   />
                 ) : student.religion === "Muslim" ? (
                   <Image
                     src="/muslim.svg"
-                    height={30}
-                    width={30}
+                    height={25}
+                    width={25}
                     alt={student.religion}
                   />
                 ) : student.religion === "Christian" ? (
                   <Image
                     src="/christian.svg"
-                    height={30}
-                    width={30}
+                    height={25}
+                    width={25}
                     alt={student.religion}
                   />
                 ) : student.religion === "Sikh" ? (
                   <Image
                     src="/sikh.svg"
-                    height={30}
-                    width={30}
+                    height={25}
+                    width={25}
                     alt={student.religion}
                   />
                 ) : student.religion === "Buddhist" ? (
                   <Image
                     src="/buddhism.svg"
-                    height={30}
-                    width={30}
+                    height={25}
+                    width={25}
                     alt={student.religion}
                   />
                 ) : student.religion === "Jain" ? (
                   <Image
                     src="/jainism.svg"
-                    height={30}
-                    width={30}
+                    height={25}
+                    width={25}
                     alt={student.religion}
                   />
                 ) : (
                   <Image
                     src="/nature.svg"
-                    height={30}
-                    width={30}
+                    height={25}
+                    width={25}
                     alt={student.religion}
                   />
                 )}
@@ -204,7 +320,6 @@ const StudentsPage = () => {
                 <p className="text-sm">{student.religion}</p>
               </div>
               <div className="flex flex-col justify-center items-start gap-2">
-                
                 <div className="flex gap-1 justify-center items-center">
                   <Image
                     className="object-cover"
@@ -231,7 +346,9 @@ const StudentsPage = () => {
                     <div className="flex absolute -top-20">
                       <Dot
                         className="absolute -bottom-5 -right-10 z-[7]"
-                        stroke={student.attendance==="Present" ? "green" : "red"}
+                        stroke={
+                          student.attendance === "Present" ? "green" : "red"
+                        }
                         width={120}
                         height={80}
                       />
