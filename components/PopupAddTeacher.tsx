@@ -19,6 +19,11 @@ import { toast } from "react-toastify";
 import { supabase } from "@/lib/supabaseClient";
 
 interface FormData {
+    teacher_id: string;
+    guardian_name: string;
+    aadhar_no: string,
+    pan_no: string,
+    epic_no: string,
     name: string;
     gender: string;
     bloodGroup: string;
@@ -29,6 +34,7 @@ interface FormData {
     qualification: string;
     majorSubject: string;
     experience: string;
+    dateofjoin: string;
     contact: string;
     email: string;
 }
@@ -36,16 +42,22 @@ interface FormData {
 export default function PopupAddTeacher() {
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState<FormData>({
+        teacher_id: "BDUV15027",
+        guardian_name: "",
+        aadhar_no: "",
+        pan_no: "",
+        epic_no: "",
         name: "",
         gender: "",
         bloodGroup: "",
         dateOfBirth: "",
-        designation:"Asst. Teacher",
+        designation: "Asst. Teacher",
         maritalStatus: "",
         photo: "",
         qualification: "",
         majorSubject: "",
         experience: "",
+        dateofjoin: "",
         contact: "+91",
         email: "",
     });
@@ -62,13 +74,13 @@ export default function PopupAddTeacher() {
         let isValid = true;
 
         if (currentStep === 1) {
-            requiredFields = ["name", "gender", "bloodGroup", "dateOfBirth", "maritalStatus"];
+            requiredFields = ["name", "teacher_id", "designation", "gender", "bloodGroup", "dateOfBirth", "maritalStatus", "guardian_name"];
             isValid = requiredFields.every(field => formData[field].trim() !== "") && !!imageFile;
         } else if (currentStep === 2) {
-            requiredFields = ["qualification", "majorSubject", "experience"];
+            requiredFields = ["qualification", "majorSubject", "experience", "dateofjoin"];
             isValid = requiredFields.every(field => formData[field].trim() !== "");
         } else if (currentStep === 3) {
-            requiredFields = ["contact", "email"];
+            requiredFields = ["contact", "email", "aadhar_no", "pan_no", "epic_no"];
             isValid = requiredFields.every(field => formData[field].trim() !== "");
         }
 
@@ -126,26 +138,33 @@ export default function PopupAddTeacher() {
                 .from('teachers_info')
                 .insert({
                     id: teacherId,
+                    teacher_id: formData.teacher_id,
                     name: formData.name,
                     designation: formData.designation,
                     gender: formData.gender,
                     blood_group: formData.bloodGroup,
                     date_of_birth: new Date(formData.dateOfBirth).toISOString(),
+                    date_of_join: new Date(formData.dateofjoin).toISOString(),
                     marital_status: formData.maritalStatus,
                     photo: publicUrl,
+                    guardian_name: formData.guardian_name,
                     qualification: formData.qualification,
                     major_subject: formData.majorSubject,
                     experience: formData.experience,
                     contact: formData.contact,
-                    email: formData.email
+                    email: formData.email,
+                    aadhar_no: formData.aadhar_no,
+                    pan_no: formData.pan_no,
+                    epic_no: formData.epic_no,
                 });
 
             if (dbError) throw dbError;
 
             toast.success("Teacher added successfully!");
-            //wait for 3 seconds and push to /dashboard/teachers
-            setTimeout(() => setCurrentStep((prev) => prev + 1), 5000);
-            router.push('/dashboard/teachers');
+            // Wait for 5 seconds and refresh the page
+            setTimeout(() => {
+                window.location.reload();
+            }, 5000);
             // Reset form or close modal here
         } catch (error) {
             // Proper error type handling
@@ -168,12 +187,12 @@ export default function PopupAddTeacher() {
         accept: { "image/*": [] }, // Only accept images
         multiple: false, // Allow only one file
     });
-    
+
 
 
     return (
-        <>
-            <div className="flex justify-center items-center mb-8">
+        <div className="flex w-full h-full flex-col justify-between items-center overflow-y-scroll scrollbar-hide gap-2">
+            <div className="flex justify-center items-center">
                 {[1, 2, 3].map((step) => (
                     <div key={step} className="flex items-center">
                         <div
@@ -187,10 +206,10 @@ export default function PopupAddTeacher() {
                 ))}
             </div>
 
-            <div className="mb-8">
+            <div>
                 {currentStep === 1 && (
                     <div className="space-y-4 flex flex-col justify-center items-center">
-                        <h2 className="text-accent-foreground text-md text-center mb-6">General Information</h2>
+                        <h2 className="text-accent-foreground text-md text-center">General Information</h2>
                         {image ? (
                             <div className="relative">
                                 <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-primary">
@@ -211,66 +230,80 @@ export default function PopupAddTeacher() {
 
 
                         )}
-                        <Input placeholder="Name" value={formData.name} onChange={(e) => handleInputChange("name", e.target.value)} required />
-                        <Input placeholder="Designation" value={formData.designation} onChange={(e) => handleInputChange("designation", e.target.value)} required />
-                        <Select value={formData.gender} onValueChange={(value: string) => handleInputChange("gender", value)} required>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Gender" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="male">Male</SelectItem>
-                                <SelectItem value="female">Female</SelectItem>
-                                <SelectItem value="other">Other</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <Select value={formData.bloodGroup} onValueChange={(value: string) => handleInputChange("bloodGroup", value)} required>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Blood Group" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="A+">A+</SelectItem>
-                                <SelectItem value="B+">B+</SelectItem>
-                                <SelectItem value="AB+">AB+</SelectItem>
-                                <SelectItem value="O+">O+</SelectItem>
-                                <SelectItem value="A-">A-</SelectItem>
-                                <SelectItem value="B-">B-</SelectItem>
-                                <SelectItem value="AB-">AB-</SelectItem>
-                                <SelectItem value="O-">O-</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <Input
-                            type="date"
-                            value={formData.dateOfBirth ? format(new Date(formData.dateOfBirth), "yyyy-MM-dd") : ""}
-                            onChange={(e) => handleInputChange("dateOfBirth", e.target.value)}
-                            className="w-[280px]"
-                        />
+                        <div className="flex flex-col gap-2 justify-center items-center">
+                            <Input placeholder="Teacher ID" value={formData.teacher_id} onChange={(e) => handleInputChange("teacher_id", e.target.value)} required />
+                            <Input placeholder="Name" value={formData.name} onChange={(e) => handleInputChange("name", e.target.value)} required />
+                            <Input placeholder="Designation" value={formData.designation} onChange={(e) => handleInputChange("designation", e.target.value)} required />
+                            <Select value={formData.gender} onValueChange={(value: string) => handleInputChange("gender", value)} required>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Gender" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Male">Male</SelectItem>
+                                    <SelectItem value="Female">Female</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <Select value={formData.bloodGroup} onValueChange={(value: string) => handleInputChange("bloodGroup", value)} required>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Blood Group" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="A+">A+</SelectItem>
+                                    <SelectItem value="B+">B+</SelectItem>
+                                    <SelectItem value="AB+">AB+</SelectItem>
+                                    <SelectItem value="O+">O+</SelectItem>
+                                    <SelectItem value="A-">A-</SelectItem>
+                                    <SelectItem value="B-">B-</SelectItem>
+                                    <SelectItem value="AB-">AB-</SelectItem>
+                                    <SelectItem value="O-">O-</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <Input
+                                type="date"
+                                value={formData.dateOfBirth ? format(new Date(formData.dateOfBirth), "yyyy-MM-dd") : ""}
+                                onChange={(e) => handleInputChange("dateOfBirth", e.target.value)}
+                                className="w-[280px]"
+                            />
 
-                        <Select value={formData.maritalStatus} onValueChange={(value: string) => handleInputChange("maritalStatus", value)} required>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Marital Status" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="married">Married</SelectItem>
-                                <SelectItem value="single">Single</SelectItem>
-                            </SelectContent>
-                        </Select>
+                            <Select value={formData.maritalStatus} onValueChange={(value: string) => handleInputChange("maritalStatus", value)} required>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Marital Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Married">Married</SelectItem>
+                                    <SelectItem value="Unmarried">Unmarried</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <Input placeholder="Guardian's name" value={formData.guardian_name} onChange={(e) => handleInputChange("guardian_name", e.target.value)} required />
+                        </div>
                     </div>
                 )}
 
                 {currentStep === 2 && (
-                    <div className="space-y-4">
-                        <h2 className="text-accent-foreground text-md text-center mb-6">Educational Information</h2>
+                    <div className=" h-full justify-between items-center flex flex-col gap-2">
+                        <h2 className="text-accent-foreground text-md text-center mb-6">School Information</h2>
                         <Input placeholder="Qualification" value={formData.qualification} onChange={(e) => handleInputChange("qualification", e.target.value)} />
                         <Input placeholder="Major Subject" value={formData.majorSubject} onChange={(e) => handleInputChange("majorSubject", e.target.value)} />
                         <Input placeholder="Experience" value={formData.experience} onChange={(e) => handleInputChange("experience", e.target.value)} />
+                        <div className="w-full flex justify-between items-center">
+                            <label htmlFor="dateofjoin">Date of Joining:</label>
+                        <Input
+                            type="date"
+                            value={formData.dateofjoin ? format(new Date(formData.dateofjoin), "yyyy-MM-dd") : ""}
+                            onChange={(e) => handleInputChange("dateofjoin", e.target.value)}
+                        />
+                        </div>
                     </div>
                 )}
 
                 {currentStep === 3 && (
-                    <div className="space-y-4">
-                        <h2 className="text-accent-foreground text-md text-center mb-6">Contact Information</h2>
+                    <div className="flex flex-col justify-center items-center gap-2">
+                        <h2 className="text-accent-foreground text-md text-center mb-6">Personal Information</h2>
                         <Input type="tel" placeholder="Phone No." value={formData.contact} onChange={(e) => handleInputChange("contact", e.target.value)} />
-                        <Input placeholder="E-Mail" value={formData.email} onChange={(e) => handleInputChange("email", e.target.value)} />
+                        <Input type="email" placeholder="E-Mail" value={formData.email} onChange={(e) => handleInputChange("email", e.target.value)} />
+                        <Input type="text" placeholder="Aadhar Card No." value={formData.aadhar_no} onChange={(e) => handleInputChange("aadhar_no", e.target.value)} />
+                        <Input type="text" placeholder="Pan Card no." value={formData.pan_no} onChange={(e) => handleInputChange("pan_no", e.target.value)} />
+                        <Input type="text" placeholder="Epic no." value={formData.epic_no} onChange={(e) => handleInputChange("epic_no", e.target.value)} />
                     </div>
                 )}
             </div>
@@ -278,6 +311,6 @@ export default function PopupAddTeacher() {
             <Button className="w-full text-accent-foreground font-bold py-3 rounded-lg" onClick={currentStep === 3 ? handleComplete : handleNext}>
                 {currentStep === 3 ? "Complete" : "Next"}
             </Button>
-        </>
+        </div>
     );
 }
