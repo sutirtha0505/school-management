@@ -157,6 +157,26 @@ const PiechartConfig = {
     },
 } satisfies ChartConfig;
 
+const PiechartData2 = [
+    { subject: "Bengali", teachers: 2, fill: "hsl(var(--chart-1))" },
+    { subject: "English", teachers: 7, fill: "hsl(var(--chart-2))" },
+    { subject: "Maths", teachers: 5, fill: "hsl(var(--chart-3))" },
+    { subject: "History", teachers: 2, fill: "hsl(var(--chart-4))" },
+    { subject: "Geography", teachers: 3, fill: "hsl(var(--chart-5))" },
+    { subject: "Physics", teachers: 3, fill: "hsl(var(--chart-6))" },
+    { subject: "Chemistry", teachers: 5, fill: "hsl(var(--chart-7))" },
+    { subject: "Biology", teachers: 6, fill: "hsl(var(--chart-8))" },
+    { subject: "Computer Science", teachers: 7, fill: "hsl(var(--chart-9))" },
+    { subject: "Statistics", teachers: 4, fill: "hsl(var(--chart-10))" },
+    { subject: "Philosophy", teachers: 6, fill: "hsl(var(--chart-11))" },
+];
+
+const PiechartConfig2 = {
+    teachers: {
+        label: "Teachers",
+    },
+} satisfies ChartConfig;
+
 
 const DashboardPage = () => {
     const [timeRange, setTimeRange] = React.useState("90d")
@@ -179,6 +199,9 @@ const DashboardPage = () => {
     });
     const totalStudents = React.useMemo(() => {
         return PiechartData.reduce((acc, curr) => acc + curr.students, 0);
+    }, []);
+    const totalTeachers = React.useMemo(() => {
+        return PiechartData2.reduce((acc, curr) => acc + curr.teachers, 0);
     }, []);
 
     return (
@@ -318,70 +341,136 @@ const DashboardPage = () => {
                     </div>
                 </Card>
             </div>
-            <Card className="flex flex-col">
-                <CardHeader className="items-center pb-0">
-                    <CardTitle>Pie Chart - Student Distribution</CardTitle>
-                    <CardDescription>Student count by class</CardDescription>
-                </CardHeader>
-                <CardContent className="flex-1 pb-0">
-                    <ChartContainer
-                        config={PiechartConfig}
-                        className="mx-auto aspect-square max-h-[250px]"
-                    >
-                        <PieChart>
-                            <ChartTooltip
-                                cursor={false}
-                                content={<ChartTooltipContent hideLabel />}
-                            />
-                            <Pie
-                                data={PiechartData}
-                                dataKey="students"
-                                nameKey="class"
-                                innerRadius={60}
-                                strokeWidth={5}
-                            >
-                                <Label
-                                    content={({ viewBox }) => {
-                                        if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                                            return (
-                                                <text
-                                                    x={viewBox.cx}
-                                                    y={viewBox.cy}
-                                                    textAnchor="middle"
-                                                    dominantBaseline="middle"
-                                                >
-                                                    <tspan
+            <div className="flex flex-wrap gap-6 w-full h-auto justify-center items-center">
+                <Card className="flex flex-col">
+                    <CardHeader className="items-center pb-0">
+                        <CardTitle>Pie Chart - Student Distribution</CardTitle>
+                        <CardDescription>Student count by class</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1 pb-0">
+                        <ChartContainer
+                            config={PiechartConfig}
+                            className="mx-auto aspect-square max-h-[250px]"
+                        >
+                            <PieChart>
+                                <ChartTooltip
+                                    cursor={false}
+                                    content={<ChartTooltipContent hideLabel />}
+                                />
+                                <Pie
+                                    data={PiechartData}
+                                    dataKey="students"
+                                    nameKey="class"
+                                    innerRadius={60}
+                                    strokeWidth={5}
+                                >
+                                    <Label
+                                        content={({ viewBox }) => {
+                                            if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                                                return (
+                                                    <text
                                                         x={viewBox.cx}
                                                         y={viewBox.cy}
-                                                        className="fill-foreground text-3xl font-bold"
+                                                        textAnchor="middle"
+                                                        dominantBaseline="middle"
                                                     >
-                                                        {totalStudents.toLocaleString()}
-                                                    </tspan>
-                                                    <tspan
-                                                        x={viewBox.cx}
-                                                        y={(viewBox.cy || 0) + 24}
-                                                        className="fill-muted-foreground"
-                                                    >
-                                                        Students
-                                                    </tspan>
-                                                </text>
-                                            );
-                                        }
-                                    }}
+                                                        <tspan
+                                                            x={viewBox.cx}
+                                                            y={viewBox.cy}
+                                                            className="fill-foreground text-3xl font-bold"
+                                                        >
+                                                            {totalStudents.toLocaleString()}
+                                                        </tspan>
+                                                        <tspan
+                                                            x={viewBox.cx}
+                                                            y={(viewBox.cy || 0) + 24}
+                                                            className="fill-muted-foreground"
+                                                        >
+                                                            Students
+                                                        </tspan>
+                                                    </text>
+                                                );
+                                            }
+                                        }}
+                                    />
+                                </Pie>
+                            </PieChart>
+                        </ChartContainer>
+                    </CardContent>
+                    <CardFooter className="flex-col gap-2 text-sm">
+                        <div className="flex items-center gap-2 font-medium leading-none">
+                            Enrollment steady this year <TrendingUp className="h-4 w-4" />
+                        </div>
+                        <div className="leading-none text-muted-foreground">
+                            Showing total students distribution across classes
+                        </div>
+                    </CardFooter>
+                </Card>
+                <Card className="flex flex-col">
+                    <CardHeader className="items-center pb-0">
+                        <CardTitle>Pie Chart - Teacher Distribution</CardTitle>
+                        <CardDescription>Number of teachers per subject</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1 pb-0">
+                        <ChartContainer
+                            config={PiechartConfig2}
+                            className="mx-auto aspect-square max-h-[250px]"
+                        >
+                            <PieChart>
+                                <ChartTooltip
+                                    cursor={false}
+                                    content={<ChartTooltipContent hideLabel />}
                                 />
-                            </Pie>
-                        </PieChart>
-                    </ChartContainer>
-                </CardContent>
-                <CardFooter className="flex-col gap-2 text-sm">
-                    <div className="flex items-center gap-2 font-medium leading-none">
-                        Enrollment steady this year <TrendingUp className="h-4 w-4" />
-                    </div>
-                    <div className="leading-none text-muted-foreground">
-                        Showing total students distribution across classes
-                    </div>
-                </CardFooter>
-            </Card>
+                                <Pie
+                                    data={PiechartData2}
+                                    dataKey="teachers"
+                                    nameKey="subject"
+                                    innerRadius={60}
+                                    strokeWidth={5}
+                                >
+                                    <Label
+                                        content={({ viewBox }) => {
+                                            if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                                                return (
+                                                    <text
+                                                        x={viewBox.cx}
+                                                        y={viewBox.cy}
+                                                        textAnchor="middle"
+                                                        dominantBaseline="middle"
+                                                    >
+                                                        <tspan
+                                                            x={viewBox.cx}
+                                                            y={viewBox.cy}
+                                                            className="fill-foreground text-3xl font-bold"
+                                                        >
+                                                            {totalTeachers.toLocaleString()}
+                                                        </tspan>
+                                                        <tspan
+                                                            x={viewBox.cx}
+                                                            y={(viewBox.cy || 0) + 24}
+                                                            className="fill-muted-foreground"
+                                                        >
+                                                            Teachers
+                                                        </tspan>
+                                                    </text>
+                                                );
+                                            }
+                                        }}
+                                    />
+                                </Pie>
+                            </PieChart>
+                        </ChartContainer>
+                    </CardContent>
+                    <CardFooter className="flex-col gap-2 text-sm">
+                        <div className="flex items-center gap-2 font-medium leading-none">
+                            Stable teacher distribution <TrendingUp className="h-4 w-4" />
+                        </div>
+                        <div className="leading-none text-muted-foreground">
+                            Showing the number of teachers per subject
+                        </div>
+                    </CardFooter>
+                </Card>
+            </div>
 
         </section>
     )
